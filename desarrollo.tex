@@ -1,4 +1,5 @@
 \section{Desarrollo}
+\section{Desarrollo}
 
 A continuación, se presentan las conclusiones obtenidas a partir del análisis de las distintas configuraciones del circuito. En ellas se relacionan los resultados experimentales con los conceptos teóricos de corriente alterna y potencia.
 
@@ -35,11 +36,23 @@ La diferencia entre ambos valores fue de aproximadamente \(14{,}3\%\). Si bien e
 
 Vale la pena analizar los valores medidos de vatímetro. Para la configuración compensada se obtuvo una potencia activa de \(68\,W\), y para la configuración sin capacitor se obtuvo \(66{,}4\,W\). Sin embargo, teóricamente, al cambiar únicamente la \(C\) del capacitor, no debería modificarse la potencia activa. Este error del \(2{,}35\%\) se puede atribuir a varias razones. Primero, a que el capacitor, en la realidad, se comporta como si tuviese una pequeña resistencia en paralelo, por lo que no es puramente capacitivo. Esta resistencia asociada al capacitor genera un aumento en la potencia activa. Segundo, a errores de lectura, precisión instrumental, variaciones en la tensión de alimentación y al comportamiento no ideal de los componentes.
 
-Además, para la configuración compensada se observó una inconsistencia entre las mediciones de potencia, tensión y corriente. Si el factor de potencia hubiese sido exactamente igual a \(1\), la potencia reactiva sería nula y, por lo tanto, la potencia aparente debería coincidir con la potencia activa medida por el vatímetro. Sin embargo, al calcular la potencia aparente a partir de las mediciones del voltímetro y el amperímetro, se obtuvo un valor menor, con una diferencia del \(3{,}38\%\). Esto implica que la potencia activa medida resultó mayor que la potencia aparente calculada, lo cual no es físicamente posible. Por lo tanto, esta diferencia se atribuyó a errores experimentales asociados a la precisión y lectura de los instrumentos, posibles variaciones en la tensión de alimentación y la dificultad de identificar visualmente la mínima corriente en el amperímetro.
 
 \subsection{Núcleos de las bobinas}
 
 Para esta parte del análisis se decidió reemplazar la bobina utilizada en los pasos anteriores, esquematizada como \(L_1\), por una segunda bobina, \(L_2\). Esta decisión fue tomada en conjunto con los profesores, debido a que los resultados medidos con \(L_1\) presentaban una diferencia significativa respecto del comportamiento esperado para el análisis propuesto en este trabajo. Por lo tanto, se consideró que existían efectos que escapaban al modelo teórico utilizado y que impedían estudiar correctamente los fenómenos principales de la experiencia.
+
+\subsubsection{Diferencias entre los núcleos macizos y laminados}
+
+Las corrientes de Foucault aparecen en los núcleos de las bobinas cuando se trabaja con circuitos de corriente alterna. Estas corrientes son corrientes inducidas que circulan en bucles cerrados dentro del material conductor del núcleo. Como consecuencia, generan campos magnéticos que se oponen a la variación del campo aplicado por la fuente de tensión. Este fenómeno provoca una disipación de energía en forma de calor, es decir, una pérdida de potencia activa.
+
+La intensidad de estas corrientes depende tanto del tipo de material del núcleo como de su forma constructiva. Por este motivo, aun utilizando un mismo material, el diseño del núcleo puede modificar significativamente las pérdidas asociadas a las corrientes de Foucault.
+
+Un núcleo laminado se fabrica ensamblando múltiples láminas delgadas, recubiertas o separadas entre sí mediante una capa aislante. Esta construcción interrumpe los caminos conductores de gran tamaño y obliga a las corrientes de Foucault a circular en bucles más pequeños dentro de cada lámina. Como resultado, aumenta la resistencia efectiva de dichos caminos, disminuye la magnitud de las corrientes inducidas y se reducen las pérdidas de energía y la generación de calor no deseada.
+
+En cambio, en un núcleo macizo las corrientes de Foucault pueden circular con mayor libertad a través de una sección más grande del material. Esto permite la formación de bucles de corriente más amplios, lo que incrementa la corriente inducida y, por consiguiente, aumenta la potencia activa disipada por este efecto.
+
+Por esta razón, los núcleos laminados son preferibles en aplicaciones de corriente alterna, ya que permiten reducir en mayor medida las pérdidas por corrientes de Foucault respecto de un núcleo macizo.
+
 
 \input{Bobina-hierro}
 
@@ -99,6 +112,5 @@ Este aumento en el factor de potencia puede explicarse por la presencia de la re
 
 Además, vale la pena mencionar que, para el circuito inductivo sin las lámparas conectadas, el factor de potencia fue de \(0{,}217\). Si bien esta diferencia no puede atribuirse únicamente al efecto del núcleo de aluminio, ya que las lámparas también consumen potencia activa y contribuyen a aumentar el factor de potencia total, el incremento observado permite evidenciar que el núcleo de aluminio tuvo un efecto significativo sobre el comportamiento energético del circuito. En particular, parte de este aumento se debe a las pérdidas activas generadas por las corrientes de Foucault.
 
-\subsubsection{Diferencias entre los núcleos macizos y laminados}
-
+\newpage
 \newpage
