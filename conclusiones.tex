@@ -1,65 +1,15 @@
+
 \section{Conclusiones}
-A continuación, se presentan las conclusiones obtenidas a partir del análisis de las distintas configuraciones del circuito. En ellas se relacionan los resultados experimentales con los conceptos teóricos de corriente alterna y potencia.
 
-\subsection{Circuito puramente resistivo}
+En primer lugar, en el circuito puramente resistivo se verificó que la potencia reactiva debía ser nula y que el factor de potencia esperado era cercano a la unidad. La simulación del circuito presentó una muy buena concordancia con la corriente medida experimentalmente, lo que permitió validar el modelo resistivo utilizado para esa configuración.
 
-Para esta parte del trabajo se analizó el circuito \textcolor{red}{\MakeUppercase{Poner URL llave $S_R$ cerrada}}. Debido a que se trataba de un circuito compuesto únicamente por una resistencia y una fuente de tensión alterna, se esperaba que la potencia reactiva \(Q\) fuera nula. Por lo tanto, toda la potencia entregada por la fuente debía transformarse en potencia activa \(P\), medida con el vatímetro y consumida por la resistencia.
+Luego, al analizar la compensación del factor de potencia mediante la conexión de un capacitor en paralelo, se observó una disminución de la corriente total del circuito. Esto permitió concluir que la incorporación del capacitor redujo la componente reactiva inductiva.
 
-Además, al ser un circuito puramente resistivo, la tensión y la corriente debían encontrarse en fase, por lo que el factor de potencia esperado era \(1\). Sin embargo, al calcularlo experimentalmente se obtuvo un valor de \(1{,}033\), lo que representa un error aproximado del \(3{,}2\%\). Este resultado no es físicamente posible, ya que el factor de potencia no puede ser mayor que uno. Por lo tanto, como el factor de potencia se calculó mediante la relación
+Por último, el análisis de los distintos núcleos de la bobina permitió estudiar cómo las propiedades del material modifican el comportamiento del circuito. 
 
-\[
-fp = \frac{P}{S} = \frac{P}{VI},
-\]
+En el caso del núcleo de aluminio, se observó que la inductancia no aumentó significativamente respecto del núcleo de aire, lo cual resultó consistente con el hecho de que el aluminio no es un material ferromagnético. Sin embargo, sí se evidenció un aumento importante de la potencia activa consumida, asociado a la aparición de corrientes de Foucault en el núcleo. Este efecto pudo modelarse mediante una resistencia equivalente en paralelo, cuyo valor permitió obtener en LTspice una corriente RMS muy cercana a la medida experimentalmente. Además, el estudio del factor de potencia mostró que la presencia del núcleo de aluminio, debido a las corrientes de Foucault, aumentó la proporción de potencia activa respecto de la potencia aparente.
 
-la diferencia se atribuyó a pequeñas variaciones en las lecturas y a la precisión limitada del voltímetro, amperímetro y vatímetro.
+En el caso del núcleo de hierro.... SOL COMPLETA
 
-De hecho, se pudo identificar una inconsistencia en las mediciones, ya que, al tratarse de un circuito puramente resistivo, la potencia aparente \(S = VI\) debería coincidir con la potencia activa \(P\) indicada por el vatímetro. Sin embargo, el producto entre la tensión y la corriente medidas fue
-
-\[
-S = VI = 100 \cdot 0{,}6 = 60\,\mathrm{VA},
-\]
-
-mientras que el vatímetro indicó una potencia activa de \(62\,\mathrm{W}\). Por este motivo, el valor de \(P\) resultó aproximadamente un \(3{,}2\%\) mayor que \(S\), lo cual explica que el factor de potencia calculado como \(\frac{P}{VI}\) haya dado un valor superior a la unidad.
-
-Finalmente, al simular el circuito, la corriente obtenida fue de aproximadamente \(0{,}8\,A\), mientras que el valor real medido con el amperímetro fue de \(0{,}6\,A\). Esta diferencia, de aproximadamente \(25\%\), se debe a que en la simulación se consideró que las resistencias tenían un comportamiento óhmico ideal, mientras que en la experiencia real se utilizaron lámparas incandescentes. Estas no se comportan como resistencias constantes, ya que la resistencia del filamento varía con la temperatura. Por lo tanto, al calentarse durante el funcionamiento, su resistencia cambia y esto modifica la corriente medida respecto del valor esperado en la simulación.f
-
-
-\subsection{Circuito puramente inductivo}
-
-\subsection{Circuito RL en paralelo}
-
-\subsection{Compensación del factor de potencia}
-
-Para esta parte del trabajo se utilizó el circuito \textcolor{red}{\MakeUppercase{Poner URL llave $S_R$ y $S_L$ cerrada}}. Inicialmente, se calculó el valor teórico de capacitancia que debía colocarse en paralelo para llevar el factor de potencia lo más cerca posible de la unidad. El resultado obtenido, usando la ecuación \textcolor{red}{\MakeUppercase{Poner ref a ecuación de C que maximiza}}, fue de \(7{,}05\,\mu F\).
-
-Luego, como el banco de capacitores solo permitía ciertos valores discretos de capacidad, se buscó experimentalmente la combinación que produjera la menor corriente total. Esto se debe a que, al cambiar solamente la capacitancia una reduccion de la corriente implica una disminucion del $|Q|$ . La combinación elegida fue de \(8\,\mu F\).
-
-Al conectar el capacitor, la corriente disminuyó de \(0{,}7\,A\) a \(0{,}657\,A\), lo cual indica que la compensación redujo la componente reactiva inductiva del circuito. Sin embargo, al calcular el factor de potencia con las mediciones experimentales se obtuvo un valor de \(1{,}035\), que no es físicamente posible. Esto se debe a que la potencia activa medida por el vatímetro fue ligeramente mayor que la potencia aparente calculada como \(S = VI\). 
-
-La diferencia entre ambos valores fue de aproximadamente \(14{,}3\%\). Si bien el valor teórico calculado fue cercano a \(7{,}05\,\mu F\), experimentalmente se observó que la menor corriente total se obtenía con una capacitancia de \(8\,\mu F\), aun cuando el banco de capacitores permitía seleccionar un valor cercano a \(7\,\mu F\). En primer lugar, el valor teórico de capacitancia fue calculado a partir de mediciones previas de tensión, corriente y potencia, por lo que cualquier error en la lectura del voltímetro, amperímetro o vatímetro se propaga al cálculo de la potencia reactiva y, en consecuencia, al valor de \(C\) necesario para compensarla. Además, la búsqueda experimental de la corriente mínima dependió de la lectura visual del amperímetro, por lo que pequeñas diferencias entre configuraciones cercanas pudieron quedar afectadas por la resolución del instrumento. Por otro lado, el modelo teórico asumía componentes ideales. Sin embargo, tanto la bobina como el banco de capacitores presentan pérdidas y comportamientos no ideales. Por estos motivos, el valor de capacitancia que minimizó la corriente experimentalmente no coincidió exactamente con el calculado de forma teórica.
-
-Vale la pena analizar los valores medidos de vatimetro. Para la configuración compensada se obtuvo una potencia activa de \(68\,W\) y para la configuracion sin capacitor se obtuvo \(66,4\,W\). Sin embargo, teoricamente al cambiar unicamente la C del capacitor no deberia modificar en nada la potencia activa. Este error del $2,35\%$ se pude atribuir a varias razones. Primero a que el capacitor en la realidad se comporta como si tuviese una pequeña resistencia en paralelo, por lo que no es puramente capacitivo. Esta resitencia asociada añ capacitor es la que genera un aumento en la potencia activa. Segundo a errores de lectura, precisión instrumental, variaciones en la tensión de alimentación y al comportamiento no ideal de los componentes.
-
-Además, para la configuración compensada se observó una inconsistencia entre las mediciones de potencia, tensión y corriente. Si el factor de potencia hubiese sido exactamente igual a \(1\), la potencia reactiva sería nula y, por lo tanto, la potencia aparente debería coincidir con la potencia activa medida por el vatímetro:
-
-\[
-S = P = 68\,W.
-\]
-
-Sin embargo, al calcular la potencia aparente a partir de las mediciones del voltímetro y el amperímetro se obtuvo
-
-\[
-S = VI = 100 \cdot 0{,}657 = 65{,}7\,VA.
-\]
-
-Esto implica que la potencia activa medida resultó mayor que la potencia aparente calculada, lo cual no es físicamente posible, ya que siempre debe cumplirse que \(P \leq S\). Por lo tanto, esta diferencia se atribuyó a errores experimentales asociados a la precisión y lectura de los instrumentos, posibles variaciones en la tensión de alimentación y la dificultad de identificar visualmente la mínima corriente en el amperímetro.
-
-\subsection{Nucleos de las bobinas}
-Para esta parte del análisis se decidió reemplazar la bobina utilizada en los pasos anteriores, esquematizada como \(L_1\), por una segunda bobina, \(L_2\). Esta decisión fue tomada en conjunto con los profesores, debido a que los resultados medidos con \(L_1\) presentaban una diferencia significativa respecto del comportamiento esperado para el análisis propuesto en este trabajo. Por lo tanto, se consideró que existían efectos que escapaban al modelo teórico utilizado y que impedían estudiar correctamente los fenómenos principales de la experiencia.
-\subsubsection{Bobina con nucleo de hierro}
-
-\subsubsection{Bobina con nucleo de aluminio}
-Al repetir la experiencia anterior pero con un nucleo de aluminio se pudieron observar varios cambios en el comportamiento del circuito. 
-
-\subsection{Diferencias entre los nucleos masisos y laminados}
+En conclusión, el trabajo permitió comprobar experimentalmente varios conceptos fundamentales de corriente alterna y potencia. Se verificó el comportamiento esperado de un circuito resistivo, se observó el efecto de la compensación capacitiva sobre la corriente total y se analizó cómo los núcleos metálicos introducen pérdidas adicionales en una bobina real.
 \newpage
