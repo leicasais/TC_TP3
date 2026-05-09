@@ -4,18 +4,26 @@
 A continuación, se presentan las conclusiones obtenidas a partir del análisis de las distintas configuraciones del circuito. En ellas se relacionan los resultados experimentales con los conceptos teóricos de corriente alterna y potencia.
 
 \subsection{Circuito puramente resistivo}
+\textcolor{red}{\MakeUppercase{Ecuaciones que desp le pego a algun otro lado: }}
 
-Para esta parte del trabajo se analizó el circuito \textcolor{red}{\MakeUppercase{Poner URL llave $S_R$ cerrada}}. Debido a que se trataba de un circuito compuesto únicamente por una resistencia y una fuente de tensión alterna, se esperaba que la potencia reactiva \(Q\) fuera nula. Por lo tanto, toda la potencia entregada por la fuente debía transformarse en potencia activa \(P\), medida con el vatímetro y consumida por la resistencia.
+\begin{equation}
+fp = \frac{P}{S} = \frac{P}{VI}
+\label{eq:factor_potencia}
+\end{equation}
 
-Además, al ser un circuito puramente resistivo, la tensión y la corriente debían encontrarse en fase, por lo que el factor de potencia esperado era \(1\). Sin embargo, al calcularlo experimentalmente se obtuvo un valor de \(1{,}033\), lo que representa un error aproximado del \(3{,}2\%\). Este resultado no es físicamente posible, ya que el factor de potencia no puede ser mayor que uno. Por lo tanto, como el factor de potencia se calculó mediante la relación
+\begin{equation}
+S = VI
+\label{eq:potencia_aparente}
+\end{equation}
 
-\[
-fp = \frac{P}{S} = \frac{P}{VI},
-\]
 
-la diferencia se atribuyó a pequeñas variaciones en las lecturas y a la precisión limitada del voltímetro, amperímetro y vatímetro.
+Para esta parte del trabajo se analizó el circuito \textcolor{red}{\MakeUppercase{Poner URL llave $S_R$ cerrada}}. Debido a que se trataba de un circuito compuesto únicamente por una resistencia y una fuente de tensión alterna, se obtuvo la potencia reactiva \(Q\) nula.
 
-De hecho, se pudo identificar una inconsistencia en las mediciones, ya que, al tratarse de un circuito puramente resistivo, la potencia aparente \(S = VI\) debería coincidir con la potencia activa \(P\) indicada por el vatímetro. Sin embargo, el producto entre la tensión y la corriente medidas fue de \(60\,\mathrm{VA}\), mientras que el vatímetro indicó una potencia activa de \(62\,\mathrm{W}\). Por este motivo, el valor de \(P\) resultó aproximadamente un \(3{,}2\%\) mayor que \(S\), lo cual explica que el factor de potencia calculado como \(\frac{P}{VI}\) haya dado un valor superior a la unidad.
+Además, al ser un circuito puramente resistivo, la tensión y la corriente debían encontrarse en fase, por lo que el factor de potencia esperado era \(1\). Sin embargo, al calcularlo experimentalmente se obtuvo un valor de \(1{,}033\), lo que representa un error aproximado del \(3{,}2\%\). Este resultado no es físicamente posible, ya que el factor de potencia no puede ser mayor que uno. Por lo tanto, como el factor de potencia se calculó mediante la relación en la eq
+:\eqref{eq:factor_potencia} la diferencia se atribuyó a pequeñas variaciones en las lecturas y a la precisión limitada del voltímetro, amperímetro y vatímetro.
+
+De hecho, se pudo identificar una inconsistencia en las mediciones, ya que, al tratarse de un circuito puramente resistivo, la potencia aparente calculada como en la eq:\eqref{eq:potencia_aparente}, debería coincidir con \(P\) medido con el vatímetro. Sin embargo, el valor de \(P\) resultó aproximadamente un \(3{,}2\%\) mayor que \(S\), lo cual explica que el factor de potencia calculado usando eq
+:\eqref{eq:factor_potencia} haya dado un valor superior a la unidad.
 
 Finalmente, al simular el circuito, la corriente obtenida fue de aproximadamente \(0{,}5997\,\mathrm{A}\), mientras que el valor real medido con el amperímetro fue de \(0{,}6\,\mathrm{A}\). Este resultado muestra una muy buena concordancia entre la simulación y la medición experimental. En este caso, el comportamiento no óhmico de las lámparas incandescentes no produjo una diferencia significativa, ya que los valores utilizados para calcular la resistencia de las lámparas fueron obtenidos en esta misma etapa de medición. Por lo tanto, las lámparas no llegaron a modificar considerablemente su resistencia por efecto del calentamiento del filamento.
 
@@ -60,49 +68,49 @@ Por esta razón, los núcleos laminados son preferibles en aplicaciones de corri
 
 Al repetir la experiencia anterior, pero con un núcleo de aluminio, como se puede ver en el esquemático \textcolor{red}{\MakeUppercase{Poner URL llave $S_R$ y $S_L$ cerradas con núcleo de aluminio}}, se pudieron observar varios cambios en el comportamiento del circuito.
 
-En primera instancia, la inductancia calculada con el núcleo de aluminio resultó muy similar a la inductancia del inductor con núcleo de aire. La diferencia entre ambos valores fue de \(2{,}7\%\). Esto se debe a que, como el aluminio no es un material ferromagnético, a diferencia del hierro, no incrementa significativamente la permeabilidad del núcleo y, por lo tanto, no aumenta en gran medida la inductancia.
+En primera instancia, la inductancia calculada con el núcleo de aluminio resultó muy similar a la inductancia del inductor con núcleo de aire. La diferencia entre ambos valores fue de \(2{,}7\%\). Esto se debe a que, como el aluminio no es un material ferromagnético no incrementa significativamente la permeabilidad del núcleo y, por lo tanto, no aumenta en gran medida la inductancia.
 
 Por otro lado, al ser un material muy buen conductor, se pudo observar un efecto importante de las corrientes de Foucault. Estas corrientes provocan una disipación de potencia activa en el núcleo. Este efecto se pudo ver en los resultados de \(P\), cuyo valor con núcleo de aire era de \(66{,}4 \; \mathrm{W}\), pero al colocar el núcleo de aluminio aumentó un \(27{,}03\%\), alcanzando un valor de \(91 \; \mathrm{W}\).
 
 Para modelar el efecto de las corrientes de Foucault, se agregó una resistencia equivalente en paralelo al modelo de la bobina, el cual incluía su inductancia y su resistencia interna en serie. El valor de esta resistencia, \(R_{\text{Foucault}}\), se obtuvo a partir de las siguientes ecuaciones:
 
-\[
+\begin{equation}
 Y_{\text{tot}}=\frac{S^*}{V^2}
-\]
+\label{eq:Ytot}
+\end{equation}
 
-\[
+\begin{equation}
 Y_{\text{bobina}}=\frac{1}{R_L+j\omega L_{AL}}
-\]
+\label{eq:Ybobina}
+\end{equation}
 
-\[
+\begin{equation}
 Y_{\text{luces}}=\frac{1}{R_{\text{luces}}}
-\]
+\label{eq:Yluces}
+\end{equation}
 
-\[
+\begin{equation}
 Y_{AL}=Y_{\text{tot}}-Y_{\text{bobina}}-Y_{\text{luces}}
-\]
+\label{eq:YAL}
+\end{equation}
 
-\[
+\begin{equation}
 Z_{AL}=\frac{1}{Y_{AL}}
-\]
+\label{eq:ZAL}
+\end{equation}
 
-\[
+\begin{equation}
 R_{\text{Foucault}}=\operatorname{Re}(Z_{AL})
-\]
+\label{eq:RFoucault}
+\end{equation}
 
-donde \(Y_{\text{tot}}\) es la admitancia total del circuito, \(V\) corresponde al valor eficaz de la tensión aplicada, \(Y_{\text{bobina}}\) es la admitancia asociada a la bobina y a su resistencia en serie, \(Y_{\text{luces}}\) es la admitancia asociada a las lámparas, e \(Y_{AL}\) es la admitancia asociada al efecto del núcleo de aluminio en la bobina.
 
-Vale la pena mencionar que el valor aproximado de \(Z_{AL}\) fue de:
+Donde \(Y_{\text{tot}}\) es la admitancia total del circuito, \(V\) corresponde al valor eficaz de la tensión aplicada, \(Y_{\text{bobina}}\) es la admitancia asociada a la bobina y a su resistencia en serie, \(Y_{\text{luces}}\) es la admitancia asociada a las lámparas, e \(Y_{AL}\) es la admitancia asociada al efecto del núcleo de aluminio en la bobina.
 
-\[
-Z_{AL}=649{,}976+j139{,}06 \; \Omega
-\]
+Vale la pena mencionar que el valor aproximado de \(Z_{AL}\) fue de $649{,}976+j139{,}06 \; \Omega$. Como se puede ver, este efecto genera una pequeña componente reactiva adicional en el sistema. Sin embargo, dicha componente se puede considerar despreciable frente a la parte resistiva asociada a \(R_{\text{Foucault}}\), cuyo valor fue $649{,}976 \; \Omega$.
 
-Como se puede ver, este efecto genera una pequeña componente reactiva adicional en el sistema. Sin embargo, dicha componente se puede considerar despreciable frente a la parte resistiva asociada a \(R_{\text{Foucault}}\), cuyo valor fue:
+El valor relativamente elevado de \(R_{\text{Foucault}}\) indica que las corrientes de Foucault no fueron tan intensas como podrían esperarse del aluminio, un buen conductor. Este hecho lo podemos justificar suponiendo que el nucleo de aluminio era laminado, por lo que disminuye reducir la magnitud de dichas corrientes y, en consecuencia, aumenta la resistencia efectiva asociada a este fenómeno.
 
-\[
-R_{\text{Foucault}}=649{,}976 \; \Omega
-\]
 
 Luego de calcular el valor de \(R_{\text{Foucault}}\), se simuló en LTspice el circuito \textcolor{red}{\MakeUppercase{Poner referencia al circuito con \(R_{\text{Foucault}}\)}}. Al buscar el valor RMS de la corriente que circulaba por la fuente, se obtuvo un valor de \(1{,}2449 \; \mathrm{A}\). Al compararlo con el valor medido por el amperímetro en el laboratorio, que fue de \(1{,}262 \; \mathrm{A}\), se obtuvo un error relativo de \(1{,}35\%\).
 
@@ -112,5 +120,4 @@ Este aumento en el factor de potencia puede explicarse por la presencia de la re
 
 Además, vale la pena mencionar que, para el circuito inductivo sin las lámparas conectadas, el factor de potencia fue de \(0{,}217\). Si bien esta diferencia no puede atribuirse únicamente al efecto del núcleo de aluminio, ya que las lámparas también consumen potencia activa y contribuyen a aumentar el factor de potencia total, el incremento observado permite evidenciar que el núcleo de aluminio tuvo un efecto significativo sobre el comportamiento energético del circuito. En particular, parte de este aumento se debe a las pérdidas activas generadas por las corrientes de Foucault.
 
-\newpage
 \newpage
