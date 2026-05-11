@@ -1,3 +1,91 @@
 \section{Introduccción}
 
+El presente trabajo práctico tiene como objetivo familiarizarse con los instrumentos utilizados para medir magnitudes en circuitos de corriente alterna, como el vatímetro, el amperímetro y el voltímetro. También se aplicarán los conocimientos teóricos de corriente alterna de un circuito real, estudiando la relación entre la potencia activa, reactiva y aparente. Finalmente, se analizará el método de corrección del factor de potencia mediante bancos de capacitores y el efecto producido por la incorporación de un núcleo en un inductor conectado al circuito.
+
+El circuito utilizado en la experiencia consiste en una fuente de tensión alterna variable, una carga resistiva formada por lámparas incandescentes, representada por una resistencia $R$, en nuestro caso se utilizaron dos lámparas encendidas, una bobina modelada mediante una inductancia $L$ y su resistencia serie asociada $R_L$, y un banco de capacitores conectable en paralelo. El esquemático correspondiente se muestra en la Fig.~\ref{fig:circuito}. La tensión eficaz aplicada sobre la carga se denota mediante el fasor $V$, mientras que la corriente eficaz consumida se representa mediante el fasor $I$. En las expresiones de potencia se utilizarán los módulos de los fasores.
+
+En corriente alterna, la potencia depende de los valores eficaces de tensión y corriente y también del desfase existente entre ambas magnitudes. La potencia aparente $S$ se define como:
+
+\[S = |V||I| \quad (1)\]
+
+mientras que la potencia activa $P$ viene dada por:
+
+\[P = |V||I|\cos(\varphi) \quad (2)\]
+
+donde $\varphi$ representa el ángulo de desfase entre la tensión y la corriente. La potencia reactiva $Q$ se expresa como:
+
+\[Q = |V||I|\sin(\varphi) \quad (3)\]
+
+Estas magnitudes se relacionan mediante el triángulo de potencias:
+
+\[S^2 = P^2 + Q^2 \quad (4)\]
+
+El factor de potencia se define como:
+
+\[fp = \cos(\varphi) = \frac{P}{S} \quad (5)\]
+
+La compensación del factor de potencia se realizó mediante capacitores conectados en paralelo, con el objetivo de reducir la potencia reactiva inductiva del circuito.
+
+\begin{figure}[H]
+\centering
+
+\begin{circuitikz}
+
+% Fuente
+\draw
+(0,0) to[sV,l=$V_S$] (0,4);
+
+% Amperímetro
+\draw (2,4) circle (0.5);
+\node at (2,4) {A};
+
+\draw (0,4) -- (1.5,4);
+\draw (2.5,4) -- (3,4);
+
+% Vatímetro
+\draw (4,4) circle (0.5);
+\node at (4,4) {W};
+
+\draw (3,4) -- (3.5,4);
+\draw (4.5,4) -- (10,4);
+
+% Conexión vatímetro inferior
+\draw (4,3.5) -- (4,0);
+
+% Conexión vatímetro superior
+\draw (4,4.5) -- (5,4.5) -- (5,4);
+
+% Línea inferior
+\draw (0,0) -- (10,0);
+
+% Voltímetro
+\draw (5.5,2) circle (0.5);
+\node at (5.5,2) {V};
+
+\draw (5.5,4) -- (5.5,2.5);
+\draw (5.5,1.5) -- (5.5,0);
+
+% Rama resistiva
+\draw
+(6.5,4) to[closing switch,l=$S_R$] (6.5,3.2)
+to[R,l=$R$] (6.5,0);
+
+% Rama inductiva
+\draw
+(8,4) to[closing switch,l=$S_L$] (8,3.2)
+to[R,l=$R_L$] (8,2)
+to[L,l=$L$] (8,0);
+
+% Rama capacitiva
+\draw
+(10,4) to[closing switch,l=$S_C$] (10,3.2)
+to[C,l=$C$] (10,0);
+
+\end{circuitikz}
+
+\caption{Circuito de análisis.}
+\label{fig:circuito}
+
+\end{figure}
+
 \newpage
