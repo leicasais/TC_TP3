@@ -1,2 +1,13 @@
 \subsubsection{Circuito RL paralelo con núcleo de hierro}
-En la tabla (\textbf{REFERENCIAR TABLA DE LA BOBINA CON NUCLEO DE HIERRO}) se evidencia un aumento significativo en el factor de potencia en cmparación con la bobina del núcelo de aire (véase la tabla \textbf{REFERENCIAR TABLA DEL CIRCUITO INDUCTIVO}). Esto resulta contraintuitivo teniendo en cuenta de que la inductancia se espera que aumente por las propiedades magnéticas del hierro. No obstante, esto se explica pues el núcleo de hierro genera pérdidas por corrientes de Foucault que son representados por una resistencia en paralelo a la bobina. Por medio de las simulaciones se ha hallado que dicha resistencia es de aproximadamente 154$\ohm$. A su vez, la inductancia pasa de ser aproximadamente 354mH a 1345mH. 
+En la tabla (\textbf{REFERENCIAR TABLA DE LA BOBINA CON NUCLEO DE HIERRO}) se evidencia un aumento significativo en el factor de potencia en comparación con la bobina del núcelo de aire (véase la tabla (\textbf{REFERENCIAR TABLA DE LA BOBINA CON NÚCLEO DE HIERRO}). Esto resulta contraintuitivo teniendo en cuenta de que la inductancia aumenta, por las propiedades magnéticas del hierro, y se espera que también aumente la potencia reactiva y con ell disminuya el factor de potencia. No obstante, suben tanto la potencia activa como la reactiva pues el núcleo de hierro genera pérdidas por corrientes de Foucault que son representados por una resistencia en paralelo a la bobina. Nótese que en este núcleo no solo se presentan pérdidas por corrientes de Foucault sino que también se evidencian péridas por histéresis pues el hierro es un componente con propiedades magnéticas.
+
+La inductancia L se puede despejar de los datos medidos con la siguiente ecuación:
+
+\[
+L = \frac{V_s^2}{2\pi \cdot  f \cdot Q}
+\]
+
+Siendo $V_s$ la tensión entregada por la fuente, f la frecuencia de la fuente y y Q la potencia reactiva del circuito. De esta expresión se obtuvo que la inductancia equivalente sería de $1345mH$. Se observa que la inductancia es un $3$ mayor que el mismo inductor pero con núcleo de hierro. 
+
+Por medio de las simulaciones se ha hallado que dicha resistencia es de aproximadamente $1000\Omega$. A partir de este resultado podemos considerar que aunque no puedan considerarse despreciables si se pueden considerar menores al efecto de la subida de la inductancia.  Que la resistencia en paralelo sea tan alta implica que en el circuito dominará la parte resistiva pues se disipará más potencia en el paralelo de la resistencia equivalente y la resistencia de las lámparas. Esto debido a que representarán una menor impedancia y por lo tanto circulará más corriente por esa rama en comparación con la rama del inductor.  
+
