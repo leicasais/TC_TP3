@@ -1,0 +1,70 @@
+\subsection{Circuito RL en paralelo}
+
+A continuación, se analizó la configuración correspondiente al esquemático visto en la Figura~\ref{fig:tp3_rl_paralelo}. Para ello, se mantuvieron cerradas las llaves $S_R$ y $S_L$, de modo que la carga conectada estuvo formada por una rama resistiva, modelada mediante una resistencia equivalente $R$, y una rama inductiva, modelada mediante una inductancia $L$ y su resistencia en serie asociada $R_L$. En este caso, se utilizó la bobina $L_1$ con núcleo de aire.
+
+\begin{figure}[H]
+    \centering
+    \begin{circuitikz}
+        \draw
+        (0,0) to[sV,l=$V_S$] (0,4)
+              -- (5,4);
+
+        \draw
+        (0,0) -- (5,0);
+
+        \draw
+        (2,4) to[closing switch,l=$S_R$] (2,2.8)
+              to[american resistor,l=$R$] (2,0);
+
+        \draw
+        (4,4) to[closing switch,l=$S_L$] (4,3)
+              to[american resistor,l=$R_L$] (4,1.8)
+              to[L,l=$L$] (4,0);
+    \end{circuitikz}
+    \caption{Configuración correspondiente al circuito RL en paralelo.}
+    \label{fig:tp3_rl_paralelo}
+\end{figure}
+
+\subsubsection{Corroboración experimental de los resultados}
+
+A partir de las mediciones realizadas se obtuvieron los valores presentados en la Tabla~\ref{tab:tp3_paso2}. En esta configuración se midieron la tensión eficaz aplicada sobre la carga, la corriente eficaz total consumida por el circuito y la potencia activa entregada a la carga. A partir de estas mediciones, se calcularon la potencia aparente, la potencia reactiva, el factor de potencia y el módulo de la impedancia equivalente.
+
+\begin{table}[H]
+    \centering
+    \caption{Mediciones y magnitudes calculadas para el circuito RL en paralelo.}
+    \label{tab:tp3_paso2}
+    \begin{tabular}{lc}
+        \toprule
+        Variable & Valor \\
+        \midrule
+        $R$ [$\Omega$] & 166,7 \\
+        $R_L$ [$\Omega$] & 65,4 \\
+        $|\underline{V}|$ [V] & 100 \\
+        $|\underline{I}|$ [A] & 0,70 \\
+        $P$ [W] & 66,4 \\
+        $S$ [VA] & 70 \\
+        $Q$ [VAr] & 22,2 \\
+        $fp$ & 0,949 \\
+        $|Z_{\text{eq}}|$ [$\Omega$] & 142,9 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+
+\subsubsection{Triángulo de potencia}
+
+A partir de los valores de la Tabla~\ref{tab:tp3_paso2}, se construyó el triángulo de potencia correspondiente. Como se observa en la Figura~\ref{fig:triangulo_rl}, la potencia reactiva resultó positiva y distinta de cero, lo cual evidenció el comportamiento inductivo de la carga. Sin embargo, la potencia activa continuó siendo predominante, por lo que el factor de potencia se mantuvo elevado.
+
+\begin{figure}[H]
+    \centering
+    \triangulopot{66.4}{22.2}{70}{$R\parallel L_1$}
+    \caption{Triángulo de potencia correspondiente al circuito RL en paralelo.}
+    \label{fig:triangulo_rl}
+\end{figure}
+
+\subsubsection{Análisis de los resultados}
+En esta parte de la experiencia se distingue un error poco menor al 10\% en la medición de la corriente que entrega la fuente comparado con las simulaciones realizadas(Véase la tabla \textbf{REFERENCIAR LA TABLA CON LOS DATOS MEDIDOS Y CALCULADOS DE RL PARALELO PARTE 2}). Este error resulta relativamente pequeño. Aun así, puede ser asociado con el comportamiento no ohmico de la resistencia. La resistencia real de este experimento son lámparas incandescentes que al calentarse aumentan su resistividad. El calor disipado por las lámparas es proporcional a la potencia disipada. Si observa la tabla \textbf{REFERENCIAR LA TABLA DE LA PARTE 1} puede notar que la corriente que circula solamente por la lámpara es de 600mA mientras que en esta experiencia la corriente entregada por la fuente es un 17\% mayor. A su vez, la corriente que entrega la fuente es la suma de las corrientes sobre la resistencia en paralelo y el inductor(con su resistencia asociada). Por lo tanto, se puede inferir que la potencia que entrega en forma de calor la resistencia es menor a la de la primera parte (cuyos datos tomamos para calcular la resistencia simulada) y por lo tanto representa una resistencia menor. Como la resistencia es menor a la tomada para las simulaciones es natural que se note una corriente mayor en los experimentos.
+
+De la tabla \textbf{REFERENCIAR TABLA DE CALCULOS DE CIRCUITO RL PARALELO} se identifica una predominancia resistiva evidenciada por un factor de potencia alto y por una potencia activa sustancialmente mayor a la potencia reactiva. Se puede apreciar una impedancia mayor en compararación con el circuito puramente resistivo pues se le agrega al circuito la impedancia de la bobina y de su resistencia interna. 
+
+
