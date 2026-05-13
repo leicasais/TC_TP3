@@ -1,0 +1,142 @@
+\subsection{Bobina con núcleo de aluminio}
+
+A continuación, se analizó la configuración correspondiente al esquemático visto en la Figura~\ref{fig:tp3_aluminio}. Para ello, se mantuvieron cerradas las llaves $S_R$ y $S_L$, de modo que la carga conectada estuvo formada por la rama resistiva y la rama inductiva en paralelo. En este ensayo se incorporó un núcleo de aluminio en la bobina. La inductancia correspondiente a esta configuración se denominó $L_A$.
+
+\begin{figure}[H]
+    \centering
+    \begin{circuitikz}
+        \draw
+        (0,0) to[sV,l=$V_S$] (0,4)
+              -- (5,4);
+
+        \draw
+        (0,0) -- (5,0);
+
+        % Rama resistiva
+        \draw
+        (2,4) to[closing switch,l=$S_R$] (2,2.8)
+              to[american resistor,l=$R$] (2,0);
+
+        % Rama inductiva con núcleo de aluminio
+        \draw
+        (4,4) to[closing switch,l=$S_L$] (4,3)
+              to[american resistor,l=$R_L$] (4,1.8)
+              to[L,l=$L_A$] (4,0);
+
+    \end{circuitikz}
+    \caption{Configuración correspondiente al circuito RL en paralelo con núcleo de aluminio.}
+    \label{fig:tp3_aluminio}
+\end{figure}
+
+\subsubsection{Corroboración experimental de los resultados}
+
+A partir de las mediciones realizadas se obtuvieron los valores presentados en la Tabla~\ref{tab:tp3_aluminio_l2}. En esta configuración se midieron la tensión eficaz aplicada sobre la carga, la corriente eficaz total consumida por el circuito y la potencia activa entregada a la carga. A partir de estas mediciones, se calcularon la potencia aparente, la potencia reactiva, el factor de potencia y el módulo de la impedancia equivalente.
+
+\begin{table}[H]
+    \centering
+    \caption{Mediciones y magnitudes calculadas para el circuito RL en paralelo con núcleo de aluminio.}
+    \label{tab:tp3_aluminio_l2}
+    \begin{tabular}{lc}
+        \toprule
+        Variable & Valor \\
+        \midrule
+        $R$ [$\Omega$] & 166,7 \\
+        $R_L$ [$\Omega$] & 22,1 \\
+        $|\underline{V}|$ [V] & 100 \\
+        $|\underline{I}|$ [A] & 1,262 \\
+        $P$ [W] & 91 \\
+        $S$ [VA] & 126,2 \\
+        $Q$ [VAr] & 87,4 \\
+        $fp$ & 0,721 \\
+        $|Z_{\text{eq}}|$ [$\Omega$] & 79,2 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\subsubsection{Triángulo de potencia}
+
+A partir de los valores de la Tabla~\ref{tab:tp3_aluminio_l2}, se construyó el triángulo de potencia correspondiente. Como se observa en la Figura~\ref{fig:triangulo_aluminio}, la potencia reactiva fue positiva y significativa respecto de la potencia aparente, lo cual evidenció el comportamiento inductivo de la carga. Además, la potencia activa también resultó elevada, lo que permitió analizar el efecto del núcleo de aluminio sobre las pérdidas del circuito.
+
+\begin{figure}[H]
+    \centering
+    \triangulopot{91}{87.4}{126.2}{Aluminio -- $L_A$}
+    \caption{Triángulo de potencia correspondiente al circuito RL en paralelo con núcleo de aluminio.}
+    \label{fig:triangulo_aluminio}
+\end{figure}
+
+\subsubsection{Análisis de los resultados}
+
+Al repetir la experiencia anterior, pero con un núcleo de aluminio se pudieron observar varios cambios en el comportamiento del circuito.
+
+En primera instancia, la inductancia calculada con el núcleo de aluminio resultó muy similar a la inductancia del inductor con núcleo de aire. La diferencia entre ambos valores fue de \(2{,}7\%\). Esto se debe a que, al no ser el aluminio un material ferromagnético no incrementa significativamente la permeabilidad del núcleo y, por lo tanto, no aumenta en gran medida la inductancia.
+
+Por otro lado, al ser un material muy buen conductor, se pudo observar un efecto importante de las corrientes de Foucault. Estas corrientes provocan una disipación de potencia activa en el núcleo. Este efecto se pudo ver en los resultados de \(P\), cuyo valor con núcleo de aire era de \(66{,}4 \; \mathrm{W}\), pero al colocar el núcleo de aluminio aumentó un \(27{,}03\%\), alcanzando un valor de \(91 \; \mathrm{W}\).
+
+Para modelar el efecto de las corrientes de Foucault, se agregó una resistencia equivalente en paralelo al modelo de la bobina, el cual incluía su inductancia y su resistencia interna en serie. El esquematico correspondiente al modelo de circuito planteado se puede ver en la Figura~\ref{fig:circuito_equivalente_aluminio}.
+
+\begin{figure}[H]
+    \centering
+    \begin{circuitikz}
+        % Fuente
+        \draw
+        (0,0) to[sV,l=$V_S$] (0,4)
+              -- (8,4);
+
+        % Línea inferior
+        \draw
+        (0,0) -- (8,0);
+
+        % Rama con R
+        \draw
+        (3,4) to[american resistor,l=$R$] (3,0);
+
+        % Rama con R_foco
+        \draw
+        (5,4) to[american resistor,l=$R_{\text{foco}}$] (5,0);
+
+        % Rama con R_L y L_A en serie
+        \draw
+        (7,4) to[american resistor,l=$R_L$] (7,2.4)
+              to[L,l=$L_A$] (7,0);
+    \end{circuitikz}
+    \caption{Circuito equivalente con rama resistiva, resistencia de pérdidas y rama inductiva.}
+    \label{fig:circuito_equivalente_aluminio}
+
+\end{figure}
+
+
+El valor de esta resistencia, \(R_{\text{Foucault}}\), se obtuvo a partir de las siguientes ecuaciones:
+
+
+
+\begin{equation}
+Y_{\text{bobina}}=\frac{1}{R_L+j\omega L_{AL}}
+\label{eq:Ybobina}
+\end{equation}
+
+
+\begin{equation}
+Y_{AL}=Y_{\text{tot}}-Y_{\text{bobina}}-Y_{\text{luces}}
+\label{eq:YAL}
+\end{equation}
+
+\begin{equation}
+R_{\text{Foucault}}=\operatorname{Re}(Z_{AL})
+\label{eq:RFoucault}
+\end{equation}
+
+
+Donde \(Y_{\text{tot}}\) es la admitancia total del circuito, \(V\) corresponde al valor eficaz de la tensión aplicada, \(Y_{\text{bobina}}\) es la admitancia asociada a la bobina y a su resistencia en serie, \(Y_{\text{luces}}\) es la admitancia asociada a las lámparas, e \(Y_{AL}\) es la admitancia asociada al efecto del núcleo de aluminio en la bobina.
+
+Vale la pena mencionar que el valor aproximado de \(Z_{AL}\) fue de $649{,}976+j139{,}06 \; \Omega$. Como se puede ver, este efecto genera una pequeña componente reactiva adicional en el sistema. Sin embargo, dicha componente se puede considerar despreciable frente a la parte resistiva asociada a \(R_{\text{Foucault}}\), cuyo valor fue $649{,}976 \; \Omega$.
+
+El valor relativamente elevado de \(R_{\text{Foucault}}\) indica que las corrientes de Foucault no fueron tan intensas como podrían esperarse del aluminio, un buen conductor. Este hecho lo podemos justificar suponiendo que el nucleo de aluminio era laminado, por lo que disminuye reducir la magnitud de dichas corrientes y, en consecuencia, aumenta la resistencia efectiva asociada a este fenómeno.
+
+
+Luego de calcular el valor de \(R_{\text{Foucault}}\), se simuló en LTspice el circuito reprecentado en la Figura~\ref{fig:circuito_equivalente_aluminio}. Al buscar el valor RMS de la corriente que circulaba por la fuente, se obtuvo un valor de \(1{,}2449 \; \mathrm{A}\). Al compararlo con el valor medido por el amperímetro en el laboratorio, que fue de \(1{,}262 \; \mathrm{A}\), se obtuvo un error relativo de \(1{,}35\%\).
+
+Por último, se analizó el factor de potencia del circuito con núcleo de aluminio, cuyo valor fue de \(0{,}721\). Este resultado representó un aumento del \(2{,}8\%\) respecto del factor de potencia obtenido para la bobina \(L_1\) conectada con las lámparas. Si se considera que la resistencia en serie de \(L_1\) era un \(66{,}2\%\) mayor y que no se cuenta con las mediciones correspondientes a esta misma configuración utilizando la bobina \(L_2\) sin núcleo de aluminio, es razonable suponer que el factor de potencia de \(L_2\) en esas condiciones habría sido considerablemente menor que el obtenido con el núcleo de aluminio.
+
+Este aumento en el factor de potencia puede explicarse por la presencia de la resistencia equivalente asociada a las corrientes de Foucault, \(R_{\text{Foucault}}\). Esta resistencia representa una disipación adicional de potencia activa en el núcleo, por lo que aumenta \(P\) sin que \(Q\) aumente en la misma proporción. Como consecuencia, el cociente entre la potencia activa y la potencia aparente aumenta, elevando el factor de potencia.
+
+Además, vale la pena mencionar que, para el circuito inductivo sin las lámparas conectadas, el factor de potencia fue de \(0{,}217\). Si bien esta diferencia no puede atribuirse únicamente al efecto del núcleo de aluminio, ya que las lámparas también consumen potencia activa y contribuyen a aumentar el factor de potencia total, el incremento observado permite evidenciar que el núcleo de aluminio tuvo un efecto significativo sobre el comportamiento energético del circuito. En particular, parte de este aumento se debe a las pérdidas activas generadas por las corrientes de Foucault.

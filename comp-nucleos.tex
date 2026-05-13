@@ -1,0 +1,98 @@
+\subsection{Circuito rama inductiva}
+
+Inicialmente se analizó la configuración correspondiente al esquemático visto en la Figura~\ref{fig:tp3_inductor_puro}. Para ello, se mantuvo cerrada únicamente la llave $S_L$, de modo que la carga conectada estuvo formada solo por la rama inductiva. 
+
+\begin{figure}[H]
+    \centering
+    \begin{circuitikz}
+        \draw
+        (0,0) to[sV,l=$V_S$] (0,4)
+              -- (2.5,4)
+              to[closing switch,l=$S_L$] (2.5,2.8)
+              to[american resistor,l=$R_L$] (2.5,1.6)
+              to[L,l=$L_i$] (2.5,0)
+              -- (0,0);
+    \end{circuitikz}
+    \caption{Configuración correspondiente al circuito inductivo.}
+    \label{fig:tp3_inductor_puro}
+\end{figure}
+
+\subsubsection{Corroboración experimental de los resultados}
+
+Esta etapa permitió estimar la inductancia de las bobinas a partir de la tensión eficaz, la corriente eficaz, la potencia activa y la resistencia serie medida. Utilizando la ecuación 
+
+\begin{equation}
+L_i = \frac{Q}{2\pi f|\underline{I}|^2 }
+\label{eq:potencia_activa}
+\end{equation}
+donde $L_i$ es la inductancia de la bobina $i$ . 
+
+
+A partir de las mediciones realizadas se obtuvieron los valores presentados en las Tablas~\ref{tab:tp3_inductor_l1} y~\ref{tab:tp3_inductor_l2}. En esta configuración se midieron la tensión eficaz aplicada sobre la rama inductiva, la corriente eficaz total consumida por el circuito y la potencia activa entregada a la bobina. A partir de estas mediciones, se calcularon la potencia aparente, la potencia reactiva, el factor de potencia, el módulo de la impedancia equivalente y la inductancia de cada bobina.
+
+\begin{table}[H]
+    \centering
+    \caption{Mediciones y magnitudes calculadas para la bobina $L_1$ sin carga resistiva en paralelo.}
+    \label{tab:tp3_inductor_l1}
+    \begin{tabular}{lc}
+        \toprule
+        Variable & Valor \\
+        \midrule
+        $R_L$ [$\Omega$] & 65,4 \\
+        $|\underline{V}|$ [V] & 100 \\
+        $|\underline{I}|$ [A] & 0,09 \\
+        $P$ [W] & 1,6 \\
+        $S$ [VA] & 9 \\
+        $Q$ [VAr] & 8,9 \\
+        $fp$ & 0,178 \\
+        $|Z_{\text{eq}}|$ [$\Omega$] & 1111,1 \\
+        $L_1$ [H] & 3,480 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \caption{Mediciones y magnitudes calculadas para la bobina $L_2$ sin carga resistiva en paralelo.}
+    \label{tab:tp3_inductor_l2}
+    \begin{tabular}{lc}
+        \toprule
+        Variable & Valor \\
+        \midrule
+        $R_L$ [$\Omega$] & 22,1 \\
+        $|\underline{V}|$ [V] & 100 \\
+        $|\underline{I}|$ [A] & 0,92 \\
+        $P$ [W] & 20 \\
+        $S$ [VA] & 92 \\
+        $Q$ [VAr] & 89,8 \\
+        $fp$ & 0,217 \\
+        $|Z_{\text{eq}}|$ [$\Omega$] & 108,7 \\
+        $L_2$ [H] & 0,338 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\subsubsection{Triángulo de potencia}
+
+A partir de los valores de las Tablas~\ref{tab:tp3_inductor_l1} y~\ref{tab:tp3_inductor_l2}, se construyeron los triángulos de potencia correspondientes a cada bobina. Como se observa en la Figura~\ref{fig:triangulos_inductivo}, en ambos casos la potencia reactiva fue considerablemente mayor que la potencia activa, lo que evidenció el comportamiento predominantemente inductivo de la carga.
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.38\textwidth}
+        \centering
+        \triangulopot{1.6}{8.9}{9}{Bobina $L_1$}
+    \end{minipage}
+    \hspace{0.8cm}
+    \begin{minipage}{0.38\textwidth}
+        \centering
+        \triangulopot{20}{89.8}{92}{Bobina $L_2$}
+    \end{minipage}
+    \caption{Triángulos de potencia correspondientes al circuito inductivo.}
+    \label{fig:triangulos_inductivo}
+\end{figure}
+
+\subsubsection{Análisis de los resultados}
+
+En esta experiencia se observa una coherencia entre los datos medidos y el circuito simulado. La corriente simulada a partir de la tensión medida se le corresponde un error menor al 5\% en comparación con la magnitud medida. Este error puede ser explicado por la consideración de idealidad de los instrumentos utilizados. 
+Por otro lado, en la tabla \ref{tab:tp3_inductor_l2}) se presenta una potencia activa. Esto tiene sentido pues el inductor se modela como un inductor real, es decir que tiene una resistencia interna. Dicha resistencia interna se modela con una resistencia en serie de \SI{22.1}{\ohm}. Este razonamiento tambien explicapor qué el factor de potencia no es nulo. Sin embargo, se percibe una carga predominantemente inductiva, pues la potencia reactiva es positiva y es factor de potencia es bajo. EL análisis es análogo para el inductor $L_1$.
+

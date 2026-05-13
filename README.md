@@ -1,0 +1,33 @@
+\begin{center}
+    
+    {\large \textbf{TRABAJO PRÁCTICO Nº3}}\\[0.5cm]
+    
+    {\Large \textbf{Corriente Alterna }}\\[1cm]
+    
+    {\normalsize \textbf{GRUPO Nº 4}}\\[0.5cm]
+
+\end{center}
+
+\vspace{0.5cm}
+
+\textbf{Integrantes del grupo:}
+
+\vspace{0.3cm}
+
+\begin{tabular}{p{5cm} p{8cm}}
+66967 & Casais, Leila \\
+65511 & Montoto, Agustín \\
+65514 & Perrotto, Francisco \\
+66675 & Vigilante, Sol \\
+\end{tabular}
+
+\vspace{0.8cm}
+
+\textbf{Fecha de realización del trabajo práctico: 24/04/2026} \\
+\vspace{0.3cm}
+
+\textbf{Fecha de entrega del informe: 10/05/2026}
+
+\vspace{1cm}
+
+\newpage

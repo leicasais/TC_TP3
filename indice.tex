@@ -1,0 +1,15 @@
+
+\section{Conclusiones}
+
+En primer lugar, en el circuito puramente resistivo se verificó que la potencia reactiva debía ser nula y que el factor de potencia esperado era cercano a la unidad. La simulación del circuito presentó una muy buena concordancia con la corriente medida experimentalmente, lo que permitió validar el modelo resistivo utilizado para esa configuración.
+
+Luego, al analizar la compensación del factor de potencia mediante la conexión de un capacitor en paralelo, se observó una disminución de la corriente total del circuito. Esto permitió concluir que la incorporación del capacitor redujo la componente reactiva inductiva.
+
+Por último, el análisis de los distintos núcleos de la bobina permitió estudiar cómo las propiedades del material modifican el comportamiento del circuito. 
+
+En el caso del núcleo de aluminio, se observó que la inductancia no aumentó significativamente respecto del núcleo de aire, lo cual resultó consistente con el hecho de que el aluminio no es un material ferromagnético. Sin embargo, sí se evidenció un aumento importante de la potencia activa consumida, asociado a la aparición de corrientes de Foucault en el núcleo. Este efecto pudo modelarse mediante una resistencia equivalente en paralelo, cuyo valor permitió obtener en LTspice una corriente RMS muy cercana a la medida experimentalmente. Además, el estudio del factor de potencia mostró que la presencia del núcleo de aluminio, debido a las corrientes de Foucault, aumentó la proporción de potencia activa respecto de la potencia aparente.
+
+En el caso del núcleo de hierro se observa un incremento en la inductancia. Lo mismo pasa con el factor de potencia pues, el aumento de impedancia sobre la rama del inductor y la maginitud de la resistencia en paralelo al núcleo hacen que el circuito sea predominantemente resistivo. Se puede concluir que los efectos por pérdidas de Foucault y por histéresis resultan poco relevantes para el estudio del circuito pues la resistencia en paralelo que los modela es relativamente alta a los valores de resistencia con los que se está trabajando. Por lo tanto, la esta rama disipará poca potencia y los efectos anteriormente mencionados no son los que dominarán el comportamiento. Lo más característico será el aumento en la inductancia de la bobina por las propiedades magnéticas del núcleo de hierro. 
+
+En conclusión, el trabajo permitió comprobar experimentalmente varios conceptos fundamentales de corriente alterna y potencia. Se verificó el comportamiento esperado de un circuito resistivo, se observó el efecto de la compensación capacitiva sobre la corriente total y se analizó cómo los núcleos metálicos introducen pérdidas adicionales en una bobina real.
+\newpage

@@ -1,0 +1,84 @@
+\subsection{Circuito RL en paralelo con núcleo de hierro}
+
+A continuación, se analizó la configuración correspondiente al esquemático visto en la Figura~\ref{fig:tp3_hierro}. Para ello, se mantuvieron cerradas las llaves $S_R$ y $S_L$, de modo que la carga conectada estuvo formada por la rama resistiva y la rama inductiva en paralelo. En esta etapa se incorporó un núcleo de hierro en la bobina reprecentado como $L_H$.
+
+\begin{figure}[H]
+    \centering
+    \begin{circuitikz}
+        \draw
+        (0,0) to[sV,l=$V_S$] (0,4)
+              -- (5,4);
+
+        \draw
+        (0,0) -- (5,0);
+
+        % Rama resistiva
+        \draw
+        (2,4) to[closing switch,l=$S_R$] (2,2.8)
+              to[american resistor,l=$R$] (2,0);
+
+        % Rama inductiva con núcleo de hierro
+        \draw
+        (4,4) to[closing switch,l=$S_L$] (4,3)
+              to[american resistor,l=$R_L$] (4,1.8)
+              to[L,l=$L_H$] (4,0);
+              
+    \end{circuitikz}
+    \caption{Configuración correspondiente al circuito RL en paralelo con núcleo de hierro.}
+    \label{fig:tp3_hierro}
+\end{figure}
+
+\subsubsection{Corroboración experimental de los resultados}
+
+A partir de las mediciones realizadas se obtuvieron los valores presentados en la Tabla~\ref{tab:tp3_hierro_l2}. En esta configuración se midieron la tensión eficaz aplicada sobre la carga, la corriente eficaz total consumida por el circuito y la potencia activa entregada a la carga. A partir de estas mediciones, se calcularon la potencia aparente, la potencia reactiva, el factor de potencia y el módulo de la impedancia equivalente.
+
+\begin{table}[H]
+    \centering
+    \caption{Mediciones y magnitudes calculadas para el circuito RL en paralelo con núcleo de hierro y bobina $L_H$.}
+    \label{tab:tp3_hierro_l2}
+    \begin{tabular}{lc}
+        \toprule
+        Variable & Valor \\
+        \midrule
+        $R$ [$\Omega$] & 166,7 \\
+        $R_L$ [$\Omega$] & 22,1 \\
+        $|\underline{V}|$ [V] & 100 \\
+        $|\underline{I}|$ [A] & 0,72 \\
+        $P$ [W] & 68 \\
+        $S$ [VA] & 72 \\
+        $Q$ [VAr] & 23,7 \\
+        $fp$ & 0,944 \\
+        $|Z_{\text{eq}}|$ [$\Omega$] & 138,9 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\subsubsection{Triángulo de potencia}
+
+A partir de los valores de las Tabla~\ref{tab:tp3_hierro_l2}, se construyo el triángulo de potencia correspondientes a la bobina $L_H$.
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.38\textwidth}
+        \centering
+        \triangulopot{68}{23.7}{72}{Hierro -- $L_H$}
+    \end{minipage}
+    \caption{Triángulos de potencia correspondientes al circuito RL en paralelo con núcleo de hierro.}
+    \label{fig:triangulos_hierro}
+\end{figure}
+
+\subsubsection{Análisis de los resultados}
+En la tabla \ref{tab:tp3_hierro_l2} se evidencia un aumento significativo en el factor de potencia en comparación con la bobina del núcelo de aire (véase la tabla \ref{tab:tp3_aluminio_l2}). Esto resulta contraintuitivo teniendo en cuenta de que la inductancia aumenta, por las propiedades magnéticas del hierro, y se espera que también aumente la potencia reactiva y con ell disminuya el factor de potencia. No obstante, suben tanto la potencia activa como la reactiva pues el núcleo de hierro genera pérdidas por corrientes de Foucault que son representados por una resistencia en paralelo a la bobina. Nótese que en este núcleo no solo se presentan pérdidas por corrientes de Foucault sino que también se evidencian péridas por histéresis pues el hierro es un componente con propiedades magnéticas.
+
+La inductancia L se puede despejar de los datos medidos con la siguiente ecuación:
+
+\begin{equation}
+C_{teo} = \frac{V_s^2}{2\pi fQ }
+\label{eq:potencia_activa}
+\end{equation}
+
+
+Siendo $V_s$ la tensión entregada por la fuente, f la frecuencia de la fuente y y Q la potencia reactiva del circuito. De esta expresión se obtuvo que la inductancia equivalente sería de $1345mH$. Se observa que la inductancia es un $3$ mayor que el mismo inductor pero con núcleo de hierro. 
+
+Por medio de las simulaciones se ha hallado que dicha resistencia es de aproximadamente $1000\Omega$. A partir de este resultado podemos considerar que aunque no puedan considerarse despreciables si se pueden considerar menores al efecto de la subida de la inductancia.  Que la resistencia en paralelo sea tan alta implica que en el circuito dominará la parte resistiva pues se disipará más potencia en el paralelo de la resistencia equivalente y la resistencia de las lámparas. Esto debido a que representarán una menor impedancia y por lo tanto circulará más corriente por esa rama en comparación con la rama del inductor.  
+
