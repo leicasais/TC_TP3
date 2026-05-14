@@ -1,143 +1,138 @@
-\section{Introducción}
+\documentclass[a4paper,12pt]{article}
 
-\subsection{Objetivos del trabajo práctico}
-
-El presente trabajo práctico tuvo como objetivo familiarizarse con los instrumentos utilizados para medir magnitudes en circuitos de corriente alterna. También se aplicaron los conocimientos teóricos de corriente alterna a un circuito real, estudiando la relación entre la potencia activa, reactiva y aparente. Finalmente, se analizó el método de corrección del factor de potencia mediante bancos de capacitores y el efecto producido por la incorporación de un núcleo en un inductor conectado al circuito.
-
-\subsection{Circuito analizado}
-
-El esquemático correspondiente al circuito estudiado se muestra en la Figura~\ref{fig:circuito}. Este consistió en una fuente de tensión alterna variable, representada como $V_S$; un amperímetro, indicado con la letra A, utilizado para medir la corriente eficaz total consumida por el circuito; un vatímetro, indicado con la letra W, utilizado para medir la potencia activa entregada a la carga; y un voltímetro, indicado con la letra V, utilizado para medir la tensión eficaz aplicada sobre la carga.
-
-La carga estuvo formada por una rama resistiva compuesta por dos lámparas incandescentes, modelada mediante una resistencia equivalente $R$; una rama inductiva compuesta por una bobina, modelada mediante una inductancia $L$ y su resistencia en serie asociada $R_L$; y un banco de capacitores conectable en paralelo, representado mediante una capacitancia $C$. La conexión de cada rama se controló mediante las llaves $S_R$, $S_L$ y $S_C$, donde $S_R$ permitió conectar o desconectar la rama resistiva, $S_L$ la rama inductiva y $S_C$ la rama capacitiva.
+% Codificación e idioma
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot,es-tabla]{babel}
 
 
-Durante la experiencia se trabajó con dos bobinas distintas, denominadas $L_1$ y $L_2$. La bobina $L_1$ fue la utilizada originalmente para las primeras mediciones. Sin embargo, en los ensayos con núcleos metálicos se observó que algunas respuestas experimentales diferían considerablemente de lo esperado a partir de las estimaciones teóricas. Por este motivo, se decidió realizar mediciones adicionales con una segunda bobina, $L_2$, con el objetivo de obtener resultados más coherentes para el análisis y la comparación de los distintos núcleos.
+% Márgenes
+\usepackage{geometry}
+\geometry{margin=2.2cm}
 
-\begin{figure}[H]
-\centering
+% Matemática
+\usepackage{amsmath,amssymb}
 
-\begin{circuitikz}
+% Unidades
+\usepackage{siunitx}
+\sisetup{
+  output-decimal-marker={,},
+  per-mode=symbol
+}
 
-% Fuente
-\draw
-(0,0) to[sV,l=$V_S$] (0,4);
+% Tablas
+\usepackage{booktabs}
+\usepackage{array}
 
-% Amperímetro
-\draw (2,4) circle (0.5);
-\node at (2,4) {A};
+% Figuras y circuitos
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage{circuitikz}
 
-\draw (0,4) -- (1.5,4);
-\draw (2.5,4) -- (3,4);
+% Colores y links
+\usepackage{xcolor}
+\usepackage{hyperref}
 
-% Vatímetro
-\draw (4,4) circle (0.5);
-\node at (4,4) {W};
-
-\draw (3,4) -- (3.5,4);
-\draw (4.5,4) -- (10,4);
-
-% Conexión vatímetro inferior
-\draw (4,3.5) -- (4,0);
-
-% Conexión vatímetro superior
-\draw (4,4.5) -- (5,4.5) -- (5,4);
-
-% Línea inferior
-\draw (0,0) -- (10,0);
-
-% Voltímetro
-\draw (5.5,2) circle (0.5);
-\node at (5.5,2) {V};
-
-\draw (5.5,4) -- (5.5,2.5);
-\draw (5.5,1.5) -- (5.5,0);
-
-% Rama resistiva
-\draw
-(6.5,4) to[closing switch,l=$S_R$] (6.5,3.2)
-to[R,l=$R$] (6.5,0);
-
-% Rama inductiva
-\draw
-(8,4) to[closing switch,l=$S_L$] (8,3.2)
-to[R,l=$R_L$] (8,2)
-to[L,l=$L$] (8,0);
-
-% Rama capacitiva
-\draw
-(10,4) to[closing switch,l=$S_C$] (10,3.2)
-to[C,l=$C$] (10,0);
-
-\end{circuitikz}
-
-\caption{Circuito de análisis.}
-\label{fig:circuito}
-
-\end{figure}
+% Comandos de monto/chat gpt ver y no tocar. npi como funciona
+\newcommand{\triangulopot}[4]{%
+\begin{tikzpicture}[x=0.042cm,y=0.042cm,baseline=(current bounding box.center)]
+\def\P{#1}
+\def\Q{#2}
+\coordinate (O) at (0,0);
+\coordinate (A) at (\P,0);
+\coordinate (B) at (\P,\Q);
+\draw[->] (-10,0) -- (\P+18,0) node[right] {$P$};
+\ifdim #2pt > 0pt
+  \draw[->] (\P,0) -- (\P,\Q+18) node[above] {$Q$};
+\fi
+\draw[thick] (O) -- (A) -- (B) -- cycle;
+\node[below] at ($(O)!0.5!(A)$) {\footnotesize $#1\,\si{W}$};
+\ifdim #2pt > 0pt
+  \node[right] at ($(A)!0.5!(B)$) {\footnotesize $#2\,\si{VAr}$};
+  \node[above left] at ($(O)!0.5!(B)$) {\footnotesize $#3\,\si{VA}$};
+\else
+  \node[above] at ($(O)!0.5!(A)$) {\footnotesize $#3\,\si{VA}$};
+\fi
+\node[below=8pt] at ($(O)!0.5!(A)+(0,-10)$) {\footnotesize #4};
+\end{tikzpicture}%
+}
 
 
-\subsection{Marco teórico}
 
-En corriente alterna, la potencia depende de los valores eficaces de tensión y corriente, y también del desfase existente entre ambas magnitudes. En este informe, $\underline{V}$ representa el fasor de tensión eficaz aplicada sobre la carga, mientras que $\underline{I}$ representa el fasor de corriente eficaz total consumida por el circuito.
+\newcommand{\bloquesimple}[3]{%
+\begin{tikzpicture}[scale=0.95,every node/.style={font=\small}]
+\draw (0,3.5) -- (6.2,3.5);
+\draw (0,0) -- (6.2,0);
+\draw (0,3.5) -- (0,2.2);
+\draw (0,1.3) -- (0,0);
+\draw (0,1.75) circle (0.45);
+\node at (0,1.75) {$V_s$};
+\draw (3,3.5) -- (3,2.25);
+\draw (3,1.25) -- (3,0);
+\draw (2.0,2.25) rectangle (4.0,1.25);
+\node[align=center] at (3,1.75) {#1\\#2};
+\node at (3.1,-0.6) {#3};
+\end{tikzpicture}%
+}
 
-La potencia aparente $S$, medida en voltampere [VA], se define como:
+\newcommand{\bloquedoble}[4]{%
+\begin{tikzpicture}[scale=0.95,every node/.style={font=\small}]
+\draw (0,3.5) -- (6.8,3.5);
+\draw (0,0) -- (6.8,0);
+\draw (0,3.5) -- (0,2.2);
+\draw (0,1.3) -- (0,0);
+\draw (0,1.75) circle (0.45);
+\node at (0,1.75) {$V_s$};
+\draw (2.0,3.5) -- (2.0,2.25);
+\draw (2.0,1.25) -- (2.0,0);
+\draw (1.1,2.25) rectangle (2.9,1.25);
+\node[align=center] at (2.0,1.75) {#1};
+\draw (5.0,3.5) -- (5.0,2.25);
+\draw (5.0,1.25) -- (5.0,0);
+\draw (3.7,2.25) rectangle (6.3,1.25);
+\node[align=center] at (5.0,1.75) {#2\\#3};
+\node at (3.8,-0.6) {#4};
+\end{tikzpicture}%
+}
 
-\begin{equation}
-S = |\underline{V}|\,|\underline{I}|
-\label{eq:potencia_aparente}
-\end{equation}
+\newcommand{\bloquetriple}[5]{%
+\begin{tikzpicture}[scale=0.95,every node/.style={font=\small}]
+\draw (0,3.5) -- (8.7,3.5);
+\draw (0,0) -- (8.7,0);
+\draw (0,3.5) -- (0,2.2);
+\draw (0,1.3) -- (0,0);
+\draw (0,1.75) circle (0.45);
+\node at (0,1.75) {$V_s$};
+\draw (1.8,3.5) -- (1.8,2.25);
+\draw (1.8,1.25) -- (1.8,0);
+\draw (1.0,2.25) rectangle (2.6,1.25);
+\node[align=center] at (1.8,1.75) {#1};
+\draw (4.6,3.5) -- (4.6,2.25);
+\draw (4.6,1.25) -- (4.6,0);
+\draw (3.3,2.25) rectangle (5.9,1.25);
+\node[align=center] at (4.6,1.75) {#2\\#3};
+\draw (7.2,3.5) -- (7.2,2.25);
+\draw (7.2,1.25) -- (7.2,0);
+\draw (6.3,2.25) rectangle (8.1,1.25);
+\node[align=center] at (7.2,1.75) {#4};
+\node at (4.8,-0.6) {#5};
+\end{tikzpicture}%
+}
 
-mientras que la potencia activa $P$, medida en watt [W], está dada por:
+%Estructura del documento 
 
-\begin{equation}
-P = |\underline{V}|\,|\underline{I}|\cos(\varphi)
-\label{eq:potencia_activa}
-\end{equation}
+\begin{document}
 
-donde $\varphi$ representa el ángulo de desfase entre la tensión y la corriente. La potencia reactiva $Q$, medida en voltampere reactivo [VAr], se expresa como:
+\input{Carátula}
+\input{resumen}
 
-\begin{equation}
-Q = |\underline{V}|\,|\underline{I}|\sin(\varphi)
-\label{eq:potencia_reactiva}
-\end{equation}
-
-Estas magnitudes se relacionan mediante el triángulo de potencias:
-
-\begin{equation}
-S^2 = P^2 + Q^2
-\label{eq:triangulo_potencias}
-\end{equation}
-
-El factor de potencia $fp$ es una magnitud adimensional que indica la relación entre la potencia activa y la potencia aparente del circuito. Se define como:
-
-\begin{equation}
-fp = \cos(\varphi) = \frac{P}{S}
-\label{eq:factor_potencia}
-\end{equation}
-
-
-La impedancia equivalente $Z_{\text{eq}}$ representa la oposición total que presenta una carga o conjunto de cargas al paso de la corriente alterna. A partir de los valores eficaces de tensión y corriente, su módulo puede calcularse como:
-
-\begin{equation}
-|Z_{\text{eq}}| = \frac{|\underline{V}|}{|\underline{I}|}
-\label{eq:impedancia_equivalente}
-\end{equation}
-
-donde $|Z_{\text{eq}}|$ corresponde al módulo de la impedancia equivalente vista por la fuente, $|\underline{V}|$ es el valor eficaz de la tensión aplicada sobre la carga equivalente y $|\underline{I}|$ es el valor eficaz de la corriente total consumida por dicha carga.
-
-Además de trabajar con la impedancia equivalente, en algunos análisis resulta conveniente utilizar la admitancia equivalente del circuito. La admitancia $Y$ se define como la inversa de la impedancia $Z$:
-
-\begin{equation}
-Z=\frac{1}{Y}
-\label{eq:impedancia_admitancia}
-\end{equation}
-
-A partir de la potencia compleja $\underline{S}$ y del valor eficaz de la tensión aplicada sobre la carga, la admitancia total del circuito puede calcularse como:
-
-\begin{equation}
-Y_{\text{tot}}=\frac{\underline{S}^{*}}{|\underline{V}|^2}
-\label{eq:Ytot}
-\end{equation}
-
-donde $Y_{\text{tot}}$ representa la admitancia total equivalente del circuito, $\underline{S}^{*}$ es el conjugado de la potencia compleja y $|\underline{V}|$ es el valor eficaz de la tensión aplicada sobre la carga.
+\tableofcontents
 \newpage
+
+\input{introduccion}
+\input{Desarrollo/desarrollo}
+\input{conclusiones}
+
+\end{document}
